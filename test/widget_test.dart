@@ -13,7 +13,7 @@ void main() {
   testWidgets('calculates a basic expression', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('0'), findsOneWidget);
+    expect(find.text('0'), findsNWidgets(2));
 
     await tester.tap(find.text('7'));
     await tester.tap(find.text('+'));

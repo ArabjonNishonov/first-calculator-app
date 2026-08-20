@@ -107,8 +107,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
   bool _isOperator(String value) => ['+', '−', '×', '÷'].contains(value);
 
   double _evaluate(String input) {
-    final tokens = RegExp(r'(?<=[+−×÷])|(?=[+−×÷])')
-        .split(input)
+    final tokens = input
+        .split(RegExp(r'(?<=[+−×÷])|(?=[+−×÷])'))
         .where((token) => token.isNotEmpty)
         .toList();
     final numbers = <double>[];
@@ -146,7 +146,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
       if (numbers.length < 2) throw const FormatException();
       calculate();
     }
-    if (numbers.length != 1 || numbers.single.isNaN || numbers.single.isInfinite) {
+    if (numbers.length != 1 ||
+        numbers.single.isNaN ||
+        numbers.single.isInfinite) {
       throw const FormatException();
     }
     return numbers.single;
@@ -183,7 +185,10 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.more_horiz_rounded, color: Colors.white54),
+                    icon: const Icon(
+                      Icons.more_horiz_rounded,
+                      color: Colors.white54,
+                    ),
                   ),
                 ],
               ),
@@ -227,8 +232,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
           color: isOperator
               ? const Color(0xFFFF7657)
               : isAction
-                  ? const Color(0xFF272A31)
-                  : const Color(0xFF1A1D22),
+              ? const Color(0xFF272A31)
+              : const Color(0xFF1A1D22),
           borderRadius: BorderRadius.circular(18),
           child: InkWell(
             borderRadius: BorderRadius.circular(18),
@@ -242,8 +247,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   color: isOperator
                       ? Colors.white
                       : isAction
-                          ? const Color(0xFFFFA08B)
-                          : Colors.white,
+                      ? const Color(0xFFFFA08B)
+                      : Colors.white,
                 ),
               ),
             ),
